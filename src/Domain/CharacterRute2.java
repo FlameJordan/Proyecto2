@@ -191,7 +191,7 @@ public class CharacterRute2 extends Character {
 
                 }
             } else if (i >= 69 || i <= 11) {
-                System.out.println("entra ");
+//                System.out.println("entra ");
                 countSprite = aux;
                 if (countSprite == 9) {
                     countSprite = 0;
