@@ -8,10 +8,13 @@ package GUI;
 import Domain.CharacterRute2;
 import Domain.Example;
 import Utilities.Variables;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -31,7 +34,7 @@ import javax.swing.JTextField;
  *
  * @author brend
  */
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements ActionListener {
 
     private static MainWindow mainWindow;
     private JButton jbtnCreate;
@@ -42,12 +45,14 @@ public class MainWindow extends JFrame {
     private JTextField jtfSpeed;
     private JTextField jtfValue;
     private JTextField jtfLanes;
+    private boolean reverseRute;
+    private boolean flag;
 
     private MainWindow() throws IOException {
         this.setTitle("Projecto 2");
         this.setSize(Variables.HEIGHT, Variables.WIDTH);
         this.setLayout(null);
-        
+
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         this.jbtnCreate = new JButton("Crear");
@@ -58,10 +63,12 @@ public class MainWindow extends JFrame {
         this.jtfSpeed = new JTextField("Velocidad");
         this.jtfValue = new JTextField("Valor");
         this.jtfLanes = new JTextField("Carriles");
-        
+        this.reverseRute = false;
 
         init();
         this.setVisible(true);
+
+        jbtnRevert.addActionListener(this);
     }
 
     public void init() throws IOException {
@@ -74,6 +81,7 @@ public class MainWindow extends JFrame {
         this.jtfSpeed.setBounds(10, 460, 95, 30);
         this.jtfValue.setBounds(115, 460, 95, 30);
         this.jtfLanes.setBounds(240, 520, 95, 30);
+        this.flag = false;
 
         this.add(this.jbtnCreate);
         this.add(this.jbtnBarrier);
@@ -83,7 +91,7 @@ public class MainWindow extends JFrame {
         this.add(this.jtfValue);
         this.add(this.jtfLanes);
         this.add(this.jbtnInterrupt);
-        
+
         MainJPanel mainJPanel = new MainJPanel();
         this.add(mainJPanel);
 
@@ -96,13 +104,28 @@ public class MainWindow extends JFrame {
         return mainWindow;
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == jbtnRevert && flag) {
+            this.setReverseRute(false);
+            this.flag = false;
+
+        } else if (e.getSource() == jbtnRevert && flag == false) {
+            this.setReverseRute(true);
+            this.flag = true;
+
+        }
+
+    }
+
     private static class MainJPanel extends JPanel implements Runnable {
 
         private JLabel label;
         private Thread thread;
         private Graphics buff;
         private Image imageBackground;
-        private Example example,example1,example2,example3,example4;
+        private Example example, example1, example2, example3, example4;
         private CharacterRute2 rute2;
 
         public MainJPanel() throws IOException {
@@ -113,11 +136,11 @@ public class MainWindow extends JFrame {
             this.setLayout(null);
             this.setVisible(true);
             this.add(label);
-            this.example= new Example(383, 260,0);
-            this.example1= new Example(383, 292,0);
-            this.example2= new Example(383, 325,0);
-            this.example3= new Example(383, 355,0);
-            this.example4= new Example(383, 386,0);
+            this.example = new Example(383, 260, 0);
+            this.example1 = new Example(383, 292, 0);
+            this.example2 = new Example(383, 325, 0);
+            this.example3 = new Example(383, 355, 0);
+            this.example4 = new Example(383, 386, 0);
             //agregamos movimiento a la ruta2
             this.rute2 = new CharacterRute2(383, 292, 0);
             init();
@@ -135,9 +158,9 @@ public class MainWindow extends JFrame {
             this.example1.start();
             this.example2.start();
             this.example3.start();
-             this.example4.start();
-             this.rute2.start();
-            
+            this.example4.start();
+            this.rute2.start();
+
         }
 
         protected void paintComponent(Graphics g) {
@@ -147,7 +170,7 @@ public class MainWindow extends JFrame {
             this.buff = image.getGraphics();
             draw(this.buff);
             g.drawImage(image, 0, 0, null);
-            
+
             try {
                 this.imageBackground = ImageIO.read(new FileInputStream("./src/Assets/Circuit.png"));
             } catch (FileNotFoundException ex) {
@@ -160,8 +183,8 @@ public class MainWindow extends JFrame {
         private void draw(Graphics g) {
             try {
                 g.drawImage(imageBackground, 0, 0, this);
-                g.drawImage(example.getImage(),example.getX(),example.getY(), this);
-                g.drawImage(rute2.getImage(),rute2.getX(),rute2.getY(), this);
+                g.drawImage(example.getImage(), example.getX(), example.getY(), this);
+                g.drawImage(rute2.getImage(), rute2.getX(), rute2.getY(), this);
 //                 g.drawImage(example1.getImage(),example1.getX(),example1.getY(), this);
 //                 g.drawImage(example2.getImage(),example2.getX(),example2.getY(), this);
 //                  g.drawImage(example3.getImage(),example3.getX(),example3.getY(), this);
@@ -196,6 +219,14 @@ public class MainWindow extends JFrame {
 
         }
 
+    }
+
+    public boolean isReverseRute() {
+        return reverseRute;
+    }
+
+    public void setReverseRute(boolean reverseRute) {
+        this.reverseRute = reverseRute;
     }
 
 }
