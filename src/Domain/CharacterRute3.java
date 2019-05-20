@@ -5,6 +5,7 @@
  */
 package Domain;
 
+import GUI.MainWindow;
 import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

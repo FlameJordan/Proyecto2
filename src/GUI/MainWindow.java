@@ -7,6 +7,7 @@ package GUI;
 
 import Domain.CharacterRute2;
 import Domain.CharacterRute3;
+import Domain.CharacterRute4;
 import Domain.Example;
 import Utilities.Variables;
 import java.awt.BorderLayout;
@@ -129,6 +130,7 @@ public class MainWindow extends JFrame implements ActionListener {
         private Example example, example1, example2, example3, example4;
         private CharacterRute2 rute2;
         private CharacterRute3 rute3;
+        private CharacterRute4 rute4;
 
         public MainJPanel() throws IOException {
             this.label = new JLabel("......................");
@@ -146,6 +148,7 @@ public class MainWindow extends JFrame implements ActionListener {
             //agregamos movimiento a la ruta2
             this.rute2 = new CharacterRute2(383, 292, 0);
             this.rute3 = new CharacterRute3(383, 292, 0);
+            this.rute4 = new CharacterRute4(3383, 292, 0);
             init();
             this.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
@@ -162,14 +165,10 @@ public class MainWindow extends JFrame implements ActionListener {
             this.example2.start();
             this.example3.start();
 
-             this.example4.start();
-             this.rute2.start();
-             this.rute3.start();
-            
-
             this.example4.start();
             this.rute2.start();
-
+            this.rute3.start();
+            this.rute4.start();
 
         }
 
@@ -194,18 +193,16 @@ public class MainWindow extends JFrame implements ActionListener {
             try {
                 g.drawImage(imageBackground, 0, 0, this);
 
-                g.drawImage(example.getImage(),example.getX(),example.getY(), this);
-                g.drawImage(rute2.getImage(),rute2.getX(),rute2.getY(), this);
-                g.drawImage(rute3.getImage(),rute3.getX(),rute3.getY(), this);
-
                 g.drawImage(example.getImage(), example.getX(), example.getY(), this);
                 g.drawImage(rute2.getImage(), rute2.getX(), rute2.getY(), this);
+                g.drawImage(rute3.getImage(), rute3.getX(), rute3.getY(), this);
+                g.drawImage(rute3.getImage(), rute3.getX(), rute3.getY(), this);
+                g.drawImage(rute4.getImage(), rute4.getX(), rute4.getY(), this);
 
 //                 g.drawImage(example1.getImage(),example1.getX(),example1.getY(), this);
 //                 g.drawImage(example2.getImage(),example2.getX(),example2.getY(), this);
 //                  g.drawImage(example3.getImage(),example3.getX(),example3.getY(), this);
 //                   g.drawImage(example4.getImage(),example4.getX(),example4.getY(), this);
-
             } catch (NullPointerException npe) {
 
             }
