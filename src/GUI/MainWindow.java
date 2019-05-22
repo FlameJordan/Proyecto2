@@ -8,7 +8,9 @@ package GUI;
 import Domain.CharacterRute2;
 import Domain.CharacterRute3;
 import Domain.CharacterRute4;
+import Domain.CharacterRute5;
 import Domain.Example;
+import Domain.Position;
 import Utilities.Variables;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -131,6 +133,7 @@ public class MainWindow extends JFrame implements ActionListener {
         private CharacterRute2 rute2;
         private CharacterRute3 rute3;
         private CharacterRute4 rute4;
+        private CharacterRute5 rute5;
 
         public MainJPanel() throws IOException {
             this.label = new JLabel("......................");
@@ -149,10 +152,12 @@ public class MainWindow extends JFrame implements ActionListener {
             this.rute2 = new CharacterRute2(383, 292, 0);
             this.rute3 = new CharacterRute3(383, 292, 0);
             this.rute4 = new CharacterRute4(3383, 292, 0);
+            this.rute5 = new CharacterRute5(3383, 292, 0);
             init();
             this.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
                     label.setText("X: " + e.getX() + "  " + "Y: " + e.getY());
+                    System.out.println("this.positions.add(new Position(" + e.getX() + "," + e.getY() + "));");
                 }
             });
         }
@@ -169,6 +174,7 @@ public class MainWindow extends JFrame implements ActionListener {
             this.rute2.start();
             this.rute3.start();
             this.rute4.start();
+            this.rute5.start();
 
         }
 
@@ -198,6 +204,7 @@ public class MainWindow extends JFrame implements ActionListener {
                 g.drawImage(rute3.getImage(), rute3.getX(), rute3.getY(), this);
                 g.drawImage(rute3.getImage(), rute3.getX(), rute3.getY(), this);
                 g.drawImage(rute4.getImage(), rute4.getX(), rute4.getY(), this);
+                g.drawImage(rute5.getImage(), rute5.getX(), rute5.getY(), this);
 
 //                 g.drawImage(example1.getImage(),example1.getX(),example1.getY(), this);
 //                 g.drawImage(example2.getImage(),example2.getX(),example2.getY(), this);
