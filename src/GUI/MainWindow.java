@@ -5,9 +5,11 @@
  */
 package GUI;
 
+import Domain.CharacterRute1;
 import Domain.CharacterRute2;
 import Domain.CharacterRute3;
 import Domain.CharacterRute4;
+import Domain.CharacterRute5;
 import Domain.Example;
 import Utilities.Variables;
 import java.awt.BorderLayout;
@@ -49,8 +51,9 @@ public class MainWindow extends JFrame implements ActionListener {
     private JTextField jtfLanes;
     private boolean reverseRute;
     private boolean flag;
+    private MainJPanel mainJPanel;
 
-    private MainWindow() throws IOException {
+    private MainWindow() throws IOException, FileNotFoundException, InterruptedException {
         this.setTitle("Proyecto 2");
         this.setSize(Variables.HEIGHT, Variables.WIDTH);
         this.setLayout(null);
@@ -73,7 +76,7 @@ public class MainWindow extends JFrame implements ActionListener {
         jbtnRevert.addActionListener(this);
     }
 
-    public void init() throws IOException {
+    public void init() throws IOException, FileNotFoundException, InterruptedException {
 
         this.jbtnCreate.setBounds(10, 520, 200, 30);
         this.jbtnBarrier.setBounds(240, 460, 100, 30);
@@ -94,12 +97,12 @@ public class MainWindow extends JFrame implements ActionListener {
         this.add(this.jtfLanes);
         this.add(this.jbtnInterrupt);
 
-        MainJPanel mainJPanel = new MainJPanel();
+        mainJPanel = new MainJPanel();
         this.add(mainJPanel);
 
     }
 
-    public static synchronized MainWindow getInstance() throws IOException {
+    public static synchronized MainWindow getInstance() throws IOException, FileNotFoundException, InterruptedException {
         if (mainWindow == null) {
             mainWindow = new MainWindow();
         }
@@ -127,12 +130,14 @@ public class MainWindow extends JFrame implements ActionListener {
         private Thread thread;
         private Graphics buff;
         private Image imageBackground;
-        private Example example, example1, example2, example3, example4;
-        private CharacterRute2 rute2;
-        private CharacterRute3 rute3;
-        private CharacterRute4 rute4;
+        private Example example;
+        private CharacterRute1 characterRute1;
+        private CharacterRute2 characterRute2;
+        private CharacterRute3 characterRute3;
+        private CharacterRute4 characterRute4;
+        private CharacterRute5 characterRute5;
 
-        public MainJPanel() throws IOException {
+        public MainJPanel() throws IOException, FileNotFoundException, InterruptedException {
             this.label = new JLabel("......................");
             this.setBackground(Color.yellow);
             this.label.setBounds(358, 9, 75, 10);
@@ -140,15 +145,14 @@ public class MainWindow extends JFrame implements ActionListener {
             this.setLayout(null);
             this.setVisible(true);
             this.add(label);
-            this.example = new Example(383, 260, 0);
-            this.example1 = new Example(383, 292, 0);
-            this.example2 = new Example(383, 325, 0);
-            this.example3 = new Example(383, 355, 0);
-            this.example4 = new Example(383, 386, 0);
+            //posiciones de cada carril
+//           (383, 386) carril 5
             //agregamos movimiento a la ruta2
-            this.rute2 = new CharacterRute2(383, 292, 0);
-            this.rute3 = new CharacterRute3(383, 292, 0);
-            this.rute4 = new CharacterRute4(3383, 292, 0);
+            this.characterRute1 = new CharacterRute1(383, 260, 0);
+            this.characterRute2 = new CharacterRute2(383, 292, 0);
+            this.characterRute3 = new CharacterRute3(383, 325, 0);
+            this.characterRute4 = new CharacterRute4(383, 355, 0);
+            this.characterRute5 = new CharacterRute5(383, 386, 0);
             init();
             this.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
@@ -160,15 +164,12 @@ public class MainWindow extends JFrame implements ActionListener {
         private void init() {
             this.thread = new Thread(this);
             this.thread.start();
-            this.example.start();
-            this.example1.start();
-            this.example2.start();
-            this.example3.start();
-
-            this.example4.start();
-            this.rute2.start();
-            this.rute3.start();
-            this.rute4.start();
+            this.characterRute1.start();
+            this.characterRute2.start();
+            this.characterRute3.start();
+            this.characterRute4.start();
+            this.characterRute5.start();
+            
 
         }
 
@@ -192,17 +193,11 @@ public class MainWindow extends JFrame implements ActionListener {
         private void draw(Graphics g) {
             try {
                 g.drawImage(imageBackground, 0, 0, this);
-
-                g.drawImage(example.getImage(), example.getX(), example.getY(), this);
-                g.drawImage(rute2.getImage(), rute2.getX(), rute2.getY(), this);
-                g.drawImage(rute3.getImage(), rute3.getX(), rute3.getY(), this);
-                g.drawImage(rute3.getImage(), rute3.getX(), rute3.getY(), this);
-                g.drawImage(rute4.getImage(), rute4.getX(), rute4.getY(), this);
-
-//                 g.drawImage(example1.getImage(),example1.getX(),example1.getY(), this);
-//                 g.drawImage(example2.getImage(),example2.getX(),example2.getY(), this);
-//                  g.drawImage(example3.getImage(),example3.getX(),example3.getY(), this);
-//                   g.drawImage(example4.getImage(),example4.getX(),example4.getY(), this);
+                g.drawImage(characterRute1.getImage(), characterRute1.getX(), characterRute1.getY(), this);
+                g.drawImage(characterRute2.getImage(), characterRute2.getX(), characterRute2.getY(), this);
+                g.drawImage(characterRute3.getImage(), characterRute3.getX(), characterRute3.getY(), this);
+                g.drawImage(characterRute4.getImage(), characterRute4.getX(), characterRute4.getY(), this);
+                g.drawImage(characterRute5.getImage(), characterRute5.getX(), characterRute5.getY(), this);
             } catch (NullPointerException npe) {
 
             }

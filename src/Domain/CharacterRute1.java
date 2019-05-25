@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
  *
  * @author brend
  */
-public class CharacterRute4 extends Character {
+public class CharacterRute1 extends Character {
 
     private int x;
     private int y;
@@ -36,7 +36,7 @@ public class CharacterRute4 extends Character {
     private int rememberX;
     private int rememberY;
 
-    public CharacterRute4(int x, int y, int imgNum) throws FileNotFoundException, IOException, InterruptedException {
+    public CharacterRute1(int x, int y, int imgNum) throws FileNotFoundException, IOException, InterruptedException {
         super(x, y, imgNum);
         setSprite();
         this.x = x;
@@ -48,7 +48,7 @@ public class CharacterRute4 extends Character {
         this.PositionX = new ArrayList();
         this.PositionY = new ArrayList();
         this.sprites = new ArrayList();
-        rute4();
+        rute1();
 
     }
 
@@ -56,10 +56,10 @@ public class CharacterRute4 extends Character {
         sprite = super.getSprite();
 
         for (int i = 0; i <= 9; i++) {
-            sprite.add(imageIO.read(new FileInputStream("src/Assets/SpritesMario/" + i + ".png")));
+            sprite.add(imageIO.read(new FileInputStream("src/Assets/SpritesMegamanX/" + i + ".png")));
         }
         for (int i = 0; i <= 9; i++) {
-            sprite.add(imageIO.read(new FileInputStream("src/Assets/SpritesMario/" + i + "R" + ".png")));
+            sprite.add(imageIO.read(new FileInputStream("src/Assets/SpritesMegamanX/" + i + "R" + ".png")));
         }
 
         super.setSprite(sprite);
@@ -84,14 +84,13 @@ public class CharacterRute4 extends Character {
                             Thread.sleep(speed);
                             super.setX((int) this.PositionX.get(i));
                             super.setY((int) this.PositionY.get(i));
-                            if (i < 401) {
+                            if (i < 237) {
                                 super.setImage(sprite.get((int) sprites.get(i)));
                             } else {
                                 i = 0;
                                 super.setImage(sprite.get((int) sprites.get(i)));
                             }
                             if (MainWindow.getInstance().isReverseRute()) {
-                               
                                 rememberX = (int) this.PositionX.get(i);
                                 rememberY = (int) this.PositionY.get(i);
                                 break;
@@ -131,7 +130,7 @@ public class CharacterRute4 extends Character {
         }
     }
 
-    public void rute4() {
+    public void rute1() {
         PositionX.add(x);
         PositionY.add(y);
         for (int i = 0; i < 10; i++) {
@@ -145,6 +144,14 @@ public class CharacterRute4 extends Character {
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
+
+        }
+        for (int i = 0; i < 10; i++) {
+            x = x + 5;
+            sprites.add(i);
+            PositionX.add(x);
+            PositionY.add(y);
+
         }
         for (int i = 0; i < 10; i++) {
             x = x + 5;
@@ -152,25 +159,14 @@ public class CharacterRute4 extends Character {
             PositionX.add(x);
             PositionY.add(y);
         }
-        for (int i = 0; i < 10; i++) {
-            x = x + 5;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
+
         for (int i = 0; i < 5; i++) {
-            x = x + 3;
+            x = x + 1;
             y = y - 3;
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
-        }
-        for (int i = 0; i < 10; i++) {
-            x = x + 3;
-            y = y - 3;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
+
         }
         for (int i = 0; i < 10; i++) {
             x = x + 2;
@@ -178,265 +174,167 @@ public class CharacterRute4 extends Character {
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
-        }
-        for (int i = 0; i < 10; i++) {
-            x = x + 1;
-            y = y - 3;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-        for (int i = 0; i < 10; i++) {
-            x = x + 1;
-            y = y - 3;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-        for (int i = 0; i < 4; i++) {
 
-            y = y - 3;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-
-        for (int i = 10; i < 20; i++) {
-
-            y = y - 3;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
         }
         for (int i = 10; i < 20; i++) {
-
-            y = y - 3;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-        for (int i = 10; i < 17; i++) {
-            y = y - 3;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-        for (int i = 10; i < 17; i++) {
             x = x - 1;
             y = y - 3;
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
+
         }
-        for (int i = 10; i < 17; i++) {
+        for (int i = 10; i < 20; i++) {
             x = x - 2;
             y = y - 3;
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
+
         }
-        for (int i = 10; i < 15; i++) {
-            x = x - 3;
+        for (int i = 10; i < 12; i++) {
+            x = x - 2;
             y = y - 3;
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
-        }
-        for (int i = 10; i < 14; i++) {
-            x = x - 5;
 
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
         }
-        for (int i = 10; i < 15; i++) {
-            x = x - 5;
-            y = y - 3;
 
+        for (int i = 10; i < 20; i++) {
+            x = x - 5;
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
-        }
-        for (int i = 10; i < 20; i++) {
-            x = x - 5;
 
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
         }
         for (int i = 10; i < 20; i++) {
             x = x - 5;
+            sprites.add(i);
+            PositionX.add(x);
+            PositionY.add(y);
 
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
         }
         for (int i = 10; i < 20; i++) {
             x = x - 5;
+            sprites.add(i);
+            PositionX.add(x);
+            PositionY.add(y);
 
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
         }
         for (int i = 10; i < 20; i++) {
             x = x - 5;
+            sprites.add(i);
+            PositionX.add(x);
+            PositionY.add(y);
 
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
         }
         for (int i = 10; i < 20; i++) {
             x = x - 5;
+            sprites.add(i);
+            PositionX.add(x);
+            PositionY.add(y);
 
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
         }
         for (int i = 10; i < 20; i++) {
             x = x - 5;
+            sprites.add(i);
+            PositionX.add(x);
+            PositionY.add(y);
 
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
         }
-        for (int i = 10; i < 20; i++) {
-            x = x - 5;
 
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
         for (int i = 10; i < 20; i++) {
             x = x - 5;
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
-        }
-        for (int i = 10; i < 20; i++) {
-            x = x - 3;
-            y = y + 1;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-        for (int i = 10; i < 20; i++) {
-            x = x - 3;
-            y = y + 1;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-        for (int i = 10; i < 20; i++) {
-            x = x - 1;
-            y = y + 2;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-        for (int i = 10; i < 20; i++) {
-            x = x - 1;
-            y = y + 2;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-        for (int i = 10; i < 20; i++) {
-            x = x - 1;
-            y = y + 2;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-        for (int i = 10; i < 20; i++) {
-            x = x - 1;
-            y = y + 2;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
+
         }
         for (int i = 10; i < 18; i++) {
-            x = x - 1;
-            y = y + 3;
+            x = x - 5;
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
+
         }
         for (int i = 10; i < 20; i++) {
+            x = x - 2;
+            y = y + 3;
+            sprites.add(i);
+            PositionX.add(x);
+            PositionY.add(y);
 
-            y = y + 3;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 10; i < 15; i++) {
+            x = x - 3;
             y = y + 3;
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
-        }
-        for (int i = 0; i < 10; i++) {
-            y = y + 3;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-        for (int i = 0; i < 10; i++) {
-            x = x + 2;
-            y = y + 3;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
-        }
-        for (int i = 0; i < 10; i++) {
-            x = x + 2;
-            y = y + 3;
-            sprites.add(i);
-            PositionX.add(x);
-            PositionY.add(y);
+
         }
         for (int i = 0; i < 9; i++) {
+            x = x + 1;
+            y = y + 3;
+            sprites.add(i);
+            PositionX.add(x);
+            PositionY.add(y);
+
+        }
+        for (int i = 0; i < 7; i++) {
+            x = x + 1;
+            y = y + 3;
+            sprites.add(i);
+            PositionX.add(x);
+            PositionY.add(y);
+
+        }
+        for (int i = 0; i < 3; i++) {
             x = x + 2;
             y = y + 3;
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
+
         }
-        for (int i = 0; i < 10; i++) {
-            x = x + 5;
-            
+        for (int i = 0; i < 8; i++) {
+            x = x + 2;
+            y = y + 1;
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
+
         }
         for (int i = 0; i < 10; i++) {
             x = x + 5;
-            
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
+
         }
         for (int i = 0; i < 10; i++) {
             x = x + 5;
-            
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
+
         }
         for (int i = 0; i < 10; i++) {
             x = x + 5;
-            
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
+
         }
         for (int i = 0; i < 10; i++) {
             x = x + 5;
-            
             sprites.add(i);
             PositionX.add(x);
             PositionY.add(y);
+
         }
-        
+
     }
 
     public Rectangle getBounds() {

@@ -6,6 +6,7 @@
 package threadsrace;
 
 import GUI.MainWindow;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -17,7 +18,7 @@ public class ThreadsRace {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, FileNotFoundException, InterruptedException {
         // TODO code application logic here
         MainWindow mainWindow= MainWindow.getInstance();
         
